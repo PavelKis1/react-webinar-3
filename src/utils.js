@@ -26,3 +26,19 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+export function countNaming(count) {
+  count %= 100;
+  let result = '';
+  if (count >= 10 && count <= 20) {
+    result = 'раз';
+  } else {
+    count %= 10;
+    if (count >= 2 && count <= 4) {
+      result = 'разa';
+    } else {
+      result = 'раз';
+    }
+  }
+  return result
+}

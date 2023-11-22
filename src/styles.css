@@ -32,23 +32,16 @@ body {
 
 .List-item {
   border-bottom: 1px dashed #ccc;
-  transition: background-color .3s;
-}
-
-.List-item:hover {
- color: #fff;
-  background-color: #85a9d8;
-  transition: background-color .3s;
 }
 
 .Item {
   display: flex;
   justify-content: flex-start;
-  transition: background-color .3s;
+  transition: background-color 1ms;
 }
 
-.Item_selected:not(:hover) {
-  background: #3377cf;
+.Item_selected {
+  background: #75aaf1;
   color: #fff;
 }
 

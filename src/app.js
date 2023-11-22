@@ -1,5 +1,5 @@
 import React from 'react';
-import { createElement } from './utils.js';
+import { countNaming } from './utils.js';
 import './styles.css';
 
 /**
@@ -24,13 +24,15 @@ function App({ store }) {
           list.map(item =>
             <div style={{ cursor: 'pointer' }} key={item.code} className='List-item'>
               <div className={'Item' + (item.selected ? ' Item_selected' : '')}
-                onClick={() => {
-                  store.selectItem(item.code);
+                onClick={(e) => {
+                  if (e.target.className !== 'Delete-btn') {
+                    store.selectItem(item.code);
+                  }
                 }}>
                 <div className='Item-code'>{item.code}</div>
-                <div className='Item-title'>{item.title} {item.count !== 0 && `| Выделяли: ${item.count} раз`}</div>
+                <div className='Item-title'>{item.title} {item.count !== 0 && `| Выделяли: ${item.count} ${countNaming(item.count)}`}</div>
                 <div className='Item-actions'>
-                  <button onClick={() => store.deleteItem(item.code)}>
+                  <button className='Delete-btn' onClick={() => store.deleteItem(item.code)}>
                     Удалить
                   </button>
                 </div>
