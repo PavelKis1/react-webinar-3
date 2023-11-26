@@ -27,17 +27,21 @@ export function createElement(name, props = {}, ...children) {
   return element;
 }
 
-export function countNaming(count) {
+export function countNaming(count, ...options) {
   count %= 100;
   let result = '';
+
   if (count >= 10 && count <= 20) {
-    result = 'раз';
+    result = options[2];
   } else {
     count %= 10;
-    if (count >= 2 && count <= 4) {
-      result = 'разa';
+    if (count === 1) {
+      result = options[0]
+    }
+    else if (count >= 2 && count <= 4) {
+      result = options[1];
     } else {
-      result = 'раз';
+      result = options[2];
     }
   }
   return result

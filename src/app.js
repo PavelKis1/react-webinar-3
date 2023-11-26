@@ -25,14 +25,16 @@ function App({ store }) {
             <div style={{ cursor: 'pointer' }} key={item.code} className='List-item'>
               <div className={'Item' + (item.selected ? ' Item_selected' : '')}
                 onClick={(e) => {
-                  if (e.target.className !== 'Delete-btn') {
-                    store.selectItem(item.code);
-                  }
+                  store.selectItem(item.code);
                 }}>
                 <div className='Item-code'>{item.code}</div>
-                <div className='Item-title'>{item.title} {item.count !== 0 && `| Выделяли: ${item.count} ${countNaming(item.count)}`}</div>
+                <div className='Item-title'>{item.title} {item.count !== 0 && `| Выделяли: ${item.count} ${countNaming(item.count, 'раз', 'раза', 'раз')}`}</div>
                 <div className='Item-actions'>
-                  <button className='Delete-btn' onClick={() => store.deleteItem(item.code)}>
+                  <button className='Delete-btn' onClick={(e) => {
+                    e.stopPropagation();
+                    store.deleteItem(item.code);
+                  }
+                  }>
                     Удалить
                   </button>
                 </div>
@@ -41,7 +43,7 @@ function App({ store }) {
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
